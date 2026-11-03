@@ -39,3 +39,8 @@ android/app/release/
 Thumbs.db
 *.iml
 .vscode/
+
+# Local release / CI scratch
+.push-token
+.joblogs*
+.joblogs.zip
