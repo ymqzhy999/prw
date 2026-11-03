@@ -155,6 +155,10 @@ GitHub Releases 页面同样提供下载：<https://github.com/ymqzhy999/prw/rel
 - 需要 WebGL 2.0 与硬件加速；
 - 不支持 WebGL 时显示友好的降级提示。
 
+## 字体许可
+
+UI 使用 Rajdhani 与 Noto Sans SC（均为 SIL Open Font License 1.1），已本地子集化打包，详见 [docs/FONT-LICENSES.md](docs/FONT-LICENSES.md)。
+
 ## 许可
 
 代码以 [MIT License](LICENSE) 发布。模型、文案与视觉设计仅用于学习、演示与非商业科普场景；不得用于任何实际核设施工程或运行用途。

@@ -465,7 +465,10 @@ function bindEvents() {
     if (e.target.id === 'helpModal') closeHelp();
   });
 
-  $('#btnCloseSel').addEventListener('click', () => clearSelection());
+  $('#btnCloseSel').addEventListener('click', () => {
+    clearSelection();
+    closeMobilePanels();
+  });
   $('#btnFocus').addEventListener('click', () => state.selected && focusPart(state.selected));
   $('#btnTogglePart').addEventListener('click', () => state.selected && togglePart(state.selected));
   $('#btnPrevPart').addEventListener('click', () => cyclePart(-1));
@@ -480,6 +483,12 @@ function bindEvents() {
     $('#cutValue').textContent = value.toFixed(1);
     plant.setCutDepth(value);
   });
+
+  $('#btnCloseTree').addEventListener('click', () => {
+    $('#treePanel').classList.remove('open');
+    $('#btnTreeMobile').classList.remove('active');
+  });
+  $('#btnCloseInfoDefault').addEventListener('click', () => closeMobilePanels());
 
   $('#btnTreeMobile').addEventListener('click', () => {
     const panel = $('#treePanel');
@@ -764,7 +773,7 @@ function animateExplode(on) {
 function applyView(key) {
   const view = VIEWS[key];
   if (!view) return;
-  if (view.cut && state.mode !== 'section') setMode('section');
+  if (state.mode === 'explode' || (view.cut && state.mode !== 'section')) setMode('section');
   flyTo(view.pos, view.target, 1.35);
   closeMobilePanels(false);
   showToast(`预设视角：${view.name}`);
@@ -794,7 +803,7 @@ function resetScene() {
     const p = plant.getPart(id);
     if (p) p.visible = true;
   }
-  gsap.killTweensOf(plant.partsRoot.children.map((c) => c.position));
+  for (const child of plant.partsRoot.children) gsap.killTweensOf(child.position);
   if (state.mode === 'explode') animateExplode(false);
   state.cutDepth = 0.5;
   setMode('section');
