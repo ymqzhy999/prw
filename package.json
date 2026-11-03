@@ -1,0 +1,31 @@
+{
+  "name": "nuclear-reactor-3d-simulator",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Nuclear Reactor 3D Simulator — educational PWR concept visualization",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "cap:sync": "npm run build && npx cap sync android",
+    "android": "npm run cap:sync && npx cap open android",
+    "android:apk": "npm run cap:sync && cd android && ./gradlew assembleDebug",
+    "android:release": "npm run cap:sync && cd android && ./gradlew assembleRelease",
+    "android:clean": "cd android && ./gradlew clean"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.2.1",
+    "gsap": "^3.12.5",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^6.2.1",
+    "@capacitor/cli": "^6.2.1",
+    "vite": "^5.4.11"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
