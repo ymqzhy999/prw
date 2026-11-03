@@ -114,12 +114,24 @@ cd android
 
 ### 已提供 APK
 
-构建完成后放置于：
+本项目已通过 GitHub Actions 的 Android 构建流水线（run `41666145019`）实际构建出 APK：
 
-- `release/nuclear-reactor-3d-debug.apk`（可直接安装）
-- `release/nuclear-reactor-3d-release-unsigned.apk`（未签名 Release，可用自己的 keystore 签名后分发）
+| 文件 | 大小 | SHA-256 | 说明 |
+| --- | --- | --- | --- |
+| [nuclear-reactor-3d-debug.apk](release/nuclear-reactor-3d-debug.apk) | 4.4 MB | `62a7858965cecbe7ca8e25410c70fd55e2615598fe04d1c710a95da3a9485656` | 已用 debug key 签名，可直接安装 |
+| [nuclear-reactor-3d-release-unsigned.apk](release/nuclear-reactor-3d-release-unsigned.apk) | 3.5 MB | `2e4c3e5b0007297b800b3abce5a6c388f275c47eddaa40230803df55a4118882` | Release 未签名包，使用自己的 keystore 签名后分发 |
 
-也可通过 GitHub Actions 手动触发 **Build Android APKs** workflow，下载构建产物。
+GitHub Releases 页面同样提供下载：<https://github.com/ymqzhy999/prw/releases/tag/v1.0.0>
+
+> Release 未签名包不能直接安装。签名命令示例：
+>
+> ```bash
+> apksigner sign --ks android/nuclear-release.jks >   --ks-key-alias nuclear >   --out release/nuclear-reactor-3d-release.apk >   release/nuclear-reactor-3d-release-unsigned.apk
+> ```
+
+也可通过 GitHub Actions 手动触发 **Build Android APKs** workflow，重新构建并下载 artifact。
+
+**安装要求**：Android 5.1（API 22）及以上，建议 Android 9+ 与支持 WebGL 2.0 的 GPU。
 
 ## 性能说明
 
