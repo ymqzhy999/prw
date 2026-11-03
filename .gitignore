@@ -44,3 +44,8 @@ Thumbs.db
 .push-token
 .joblogs*
 .joblogs.zip
+
+# Local artifact scratch
+.artifacts/
+.release.json
+.joblogs/
